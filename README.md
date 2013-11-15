@@ -4,7 +4,7 @@ Bean Text Block
 Bean Text Block is a small Drupal module that allows users to create simple
 text blocks for use on their site.  This module, combined with the power of
 beans (block entities) can essentially replace the core Block module. Note:
-a small (patch)[https://drupal.org/node/2114279] to the bean module is
+a small [patch](https://drupal.org/node/2114279) to the bean module is
 required to replace the core block module.
 
 The module is a simple demonstration of a custom _bean_ with a single
@@ -20,6 +20,6 @@ ways:
 Dependencies
 ------------
 
-* (Bean)[https://drupal.org/project/bean]
-* (CTools)[https://drupal.org/project/ctools]
-* (Features)[https://drupal.org/project/features]
+* [Bean](https://drupal.org/project/bean)
+* [CTools](https://drupal.org/project/ctools)
+* [Features](https://drupal.org/project/features)
