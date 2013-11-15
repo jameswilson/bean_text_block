@@ -17,6 +17,8 @@ ways:
 * Hide the _title_ field.
 * Streamline the _revision_ fields down to a oneline text field: "What Changed?".
 
+![Screenshot](screenshot.png)
+
 Dependencies
 ------------
 
