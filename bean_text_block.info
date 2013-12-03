@@ -1,7 +1,7 @@
 name = Basic Text Block
 description = A basic block entity providing a single text field.
 core = 7.x
-package = Beans
+package = Bean
 version = 7.x-1.0
 project = bean_text_block
 dependencies[] = bean_admin_ui
