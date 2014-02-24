@@ -42,3 +42,70 @@ function bean_text_block_form_bean_form_alter(&$form, &$form_state, $form_id) {
   }
 
 }
+
+/**
+ * Implements hook_post_features_enable_feature().
+ *
+ * Use this hook to create content after feature installation.
+ *
+ * WARNING:  This code only executes when the module is enabled
+ *           with features_install_modules() or `drush enable`.
+ */
+function bean_text_block_post_features_enable_feature($component) {
+
+  // Certain features components must be enabled before importing the blocks.
+  static $enabled_components;
+  $enabled_components[] = $component;
+  $required_components = array('bean_type', 'field_base', 'field_instance');
+  foreach ($required_components as $required_component) {
+    if (!in_array($required_component, $enabled_components)) {
+      return;
+    }
+  }
+
+  // Import placeholder text blocks
+  $blocks['block-first'] = array(
+    'delta' => 'block-first',   // Use dashes to separate words in delta.
+    'label' => 'Placeholder 1', // Changeme
+    'title' => 'Placeholder 1', // Changeme
+    'type' => 'text_block',
+    'view_mode' => 'default',
+    'data' => array(),
+    'field_text_block' => array(
+      'und' => array(
+        '0' => array(
+          'value' => '<p>Lorem ipsum dolor sit amet, consectetuer <a href="http://example.com">adipiscing</a> elit.</p>',
+          'format' => 'filtered_html',
+        ),
+      ),
+    ),
+  );
+  $blocks['block-second'] = array(
+    'delta' => 'block-second',  // Use dashes to separate words in delta.
+    'label' => 'Placeholder 2', // Changeme
+    'title' => 'Placeholder 2', // Changeme
+    'type' => 'text_block',
+    'view_mode' => 'default',
+    'data' => array(),
+    'field_text_block' => array(
+      'und' => array(
+        '0' => array(
+          'value' => '<p>Lorem ipsum dolor sit amet, consectetuer <a href="http://example.com">adipiscing</a> elit.</p>',
+          'format' => 'filtered_html',
+        ),
+      ),
+    ),
+  );
+
+  // Create the block only if the delta doesn't already exist.
+  foreach($blocks as $key => $block) {
+    if (!bean_load_delta($block['delta'])) {
+      $bean = bean_create($block);
+      if (bean_save($bean)) {
+        drupal_set_message($block['label'] . ' block was created.');
+      } else {
+        drupal_set_message($block['label'] . ' block could not be saved!', 'warning');
+      }
+    }
+  }
+}
